@@ -1,16 +1,21 @@
-﻿using AdminPanel.Models;
+﻿using WEB.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AdminPanel.DAL
+namespace WEB.DAL
 {
     public class AppDbContext:DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext>options):base(options)
         {}
-        DbSet<Slide> Slides { get; set; }
+        public DbSet<Slide> Slides { get; set; }
+        public DbSet<Summary> Summary { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
+
     }
 }

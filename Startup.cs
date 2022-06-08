@@ -1,4 +1,4 @@
-using AdminPanel.DAL;
+using WEB.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AdminPanel
+namespace WEB
 {
     public class Startup
     {
@@ -44,6 +44,10 @@ namespace AdminPanel
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
+                );
                 endpoints.MapControllerRoute(
                     "default",
                     "{controller=Home}/{action=Index}/{Id?}"

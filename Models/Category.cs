@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AdminPanel.Models
+namespace WEB.Models
 {
     public class Category
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public bool IsDeleted { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }
