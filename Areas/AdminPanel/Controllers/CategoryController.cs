@@ -42,18 +42,18 @@ namespace WEB.Areas.AdminPanel.Controllers
                 {
                     IsExist = true; break;
                 }
-                if (IsExist)
-                {
-                    ModelState.AddModelError("Name", $"{category.Name} is exist.");
-                    return View();
-                }
-                Category newCategory = new Category
-                {
-                    Name = category.Name
-                };
-                await _context.Categories.AddAsync(newCategory);
-                
             }
+            if (IsExist)
+            {
+                ModelState.AddModelError("Name", $"{category.Name} is exist.");
+                return View();
+            }
+            Category newCategory = new Category
+            {
+                Name = category.Name
+            };
+            await _context.Categories.AddAsync(newCategory);
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
