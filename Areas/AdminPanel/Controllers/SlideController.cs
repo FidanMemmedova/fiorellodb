@@ -74,8 +74,6 @@ namespace WEB.Areas.AdminPanel.Controllers
             _context.Slides.Remove(slider);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-
-              
         }
         public IActionResult Update(int? id)
         {
@@ -119,6 +117,18 @@ namespace WEB.Areas.AdminPanel.Controllers
             }
             slide.Url = await slide.Photo.SaveFileAsync(_env.WebRootPath, "img");
             await _context.Slides.AddAsync(slide);
+            await _context.SaveChangesAsync();
+            var _slide = _context.Slides.Find(id);
+            if (_slide == null)
+            {
+                return NotFound();
+            }
+            var path = Helper.GetPath(_env.WebRootPath, "img", _slide.Url);
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            }
+            _context.Slides.Remove(_slide);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
