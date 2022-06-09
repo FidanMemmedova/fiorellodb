@@ -39,7 +39,7 @@ namespace WEB.Areas.AdminPanel.Controllers
                 return View();
             }
             if (!slide.Photo.ContentType.Contains("image/"))
-            {
+            { 
                 ModelState.AddModelError("Photo", "Type of file must be image");
                 return View();
             }
