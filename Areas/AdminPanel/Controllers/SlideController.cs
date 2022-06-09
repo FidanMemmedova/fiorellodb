@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WEB.DAL;
@@ -32,7 +33,23 @@ namespace WEB.Areas.AdminPanel.Controllers
             {
                 return View();
             }
-            return Content("ok");
+            if (slide.Photo.Length/1024>200)
+            {
+                ModelState.AddModelError("Photo", "Max size image must be less than 200kb");
+                return View();
+            }
+            if (!slide.Photo.ContentType.Contains("image/"))
+            {
+                ModelState.AddModelError("Photo", "Type of file must be image");
+                return View();
+            }
+            //return Json(slide.Photo.ContentType.Contains("image/"));
+            //return Json("Ok");
+            using (FileStream fileStream = new FileStream(@"C: \Users\ASUS\Desktop\fiorellodb\wwwroot\img" + slide.Photo.FileName, FileMode.Create))
+            {
+                slide.Photo.CopyTo(fileStream);
+            }
+            return Json(slide.Photo.FileName);
         }
     }
 }
