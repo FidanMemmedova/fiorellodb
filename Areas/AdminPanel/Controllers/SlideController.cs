@@ -89,7 +89,7 @@ namespace WEB.Areas.AdminPanel.Controllers
                 ModelState.AddModelError("Photo", "Type of file must be image");
                 return View();
             }
-            slide.Url = await slide.Photo.SaveFileAsync(_env.WebRootPath, "img");
+            //slide.Url = await slide.Photo.SaveFileAsync(_env.WebRootPath, "img");
             await _context.Slides.AddAsync(slide);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
