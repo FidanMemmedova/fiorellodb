@@ -153,3 +153,4 @@ C:\Users\ASUS\Desktop\fiorellodb\obj\Debug\netcoreapp3.1\WEB.genruntimeconfig.ca
 C:\Users\ASUS\Desktop\fiorellodb\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Category\Update.cshtml.g.cs
 C:\Users\ASUS\Desktop\fiorellodb\obj\Debug\netcoreapp3.1\WEB.csproj.AssemblyReference.cache
 C:\Users\ASUS\Desktop\fiorellodb\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Slide\Index.cshtml.g.cs
+C:\Users\ASUS\Desktop\fiorellodb\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Slide\Create.cshtml.g.cs

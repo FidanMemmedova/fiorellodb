@@ -19,5 +19,9 @@ namespace WEB.Areas.AdminPanel.Controllers
         {
             return View(_context.Slides);
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
