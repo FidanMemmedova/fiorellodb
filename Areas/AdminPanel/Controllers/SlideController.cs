@@ -77,6 +77,9 @@ namespace WEB.Areas.AdminPanel.Controllers
 
               
         }
-        public async Task<IActionResult>Update()
+        public async Task<IActionResult> Update(Slide slide)
+        {
+            
+        }
     }
 }
