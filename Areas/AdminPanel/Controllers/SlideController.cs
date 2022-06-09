@@ -7,6 +7,7 @@ using WEB.DAL;
 
 namespace WEB.Areas.AdminPanel.Controllers
 {
+    [Area("AdminPanel")]
     public class SlideController : Controller
     {
         private AppDbContext _context { get; }
