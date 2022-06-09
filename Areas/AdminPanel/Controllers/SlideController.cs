@@ -79,7 +79,20 @@ namespace WEB.Areas.AdminPanel.Controllers
         }
         public async Task<IActionResult> Update(Slide slide)
         {
-            
+            if (!slide.Photo.CheckFileSize(200))
+            {
+                ModelState.AddModelError("Photo", "Max size image must be less than 200kb");
+                return View();
+            }
+            if (!slide.Photo.CheckFileType("image/"))
+            {
+                ModelState.AddModelError("Photo", "Type of file must be image");
+                return View();
+            }
+            slide.Url = await slide.Photo.SaveFileAsync(_env.WebRootPath, "img");
+            await _context.Slides.AddAsync(slide);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
