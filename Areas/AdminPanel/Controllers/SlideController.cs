@@ -77,6 +77,10 @@ namespace WEB.Areas.AdminPanel.Controllers
 
               
         }
+        public IActionResult Update()
+        {
+            return View();
+        }
         public async Task<IActionResult> Update(Slide slide)
         {
             if (!slide.Photo.CheckFileSize(200))
