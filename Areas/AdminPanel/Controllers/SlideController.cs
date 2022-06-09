@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WEB.DAL;
+using WEB.Models;
 
 namespace WEB.Areas.AdminPanel.Controllers
 {
@@ -22,6 +23,16 @@ namespace WEB.Areas.AdminPanel.Controllers
         public IActionResult Create()
         {
             return View();
+        } 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Slide slide)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            return Content("ok");
         }
     }
 }
