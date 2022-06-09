@@ -77,12 +77,36 @@ namespace WEB.Areas.AdminPanel.Controllers
 
               
         }
-        public IActionResult Update()
+        public IActionResult Update(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            var slide = _context.Slides.Find(id);
+            if (slide == null)
+            {
+                return NotFound();
+            }
+            return View(slide);
         }
-        public async Task<IActionResult> Update(Slide slide)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int? id,Slide slide)
         {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            var slider = _context.Slides.Find(slide.Id);
+            if (slider == null)
+            {
+                return NotFound();
+            }
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             if (!slide.Photo.CheckFileSize(200))
             {
                 ModelState.AddModelError("Photo", "Max size image must be less than 200kb");
@@ -93,7 +117,7 @@ namespace WEB.Areas.AdminPanel.Controllers
                 ModelState.AddModelError("Photo", "Type of file must be image");
                 return View();
             }
-            //slide.Url = await slide.Photo.SaveFileAsync(_env.WebRootPath, "img");
+            slide.Url = await slide.Photo.SaveFileAsync(_env.WebRootPath, "img");
             await _context.Slides.AddAsync(slide);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
