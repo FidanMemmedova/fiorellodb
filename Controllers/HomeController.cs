@@ -24,7 +24,7 @@ namespace WEB.Controllers
                 Categories = _context.Categories.Where(c => !c.IsDeleted).ToList(),
                 Products=_context.Products.Where(c=>!c.isDeleted)
                 .Include(p=>p.Images).Include(p=>p.Category).ToList(),
-        };
+             };
             return View(home);
         }
     }
